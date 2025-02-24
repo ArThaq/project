@@ -19,8 +19,8 @@ func main() {
 
 func whoAmI(response http.ResponseWriter, r *http.Request) {
 	who := []whoami{
-		whoami{Name: "Efrei Paris",
-			Title: "DevOps and Continous Deployment",
+		whoami{Name: "SoloTeam",
+			Title: "DevOps and Continuous Deployment",
 			State: "FR",
 		},
 	}
@@ -47,5 +47,6 @@ func request1() {
 	http.HandleFunc("/aboutme", aboutMe)
 	http.HandleFunc("/whoami", whoAmI)
 
+	log.Println("Starting server on :8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
