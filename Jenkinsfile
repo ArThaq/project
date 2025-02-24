@@ -1,25 +1,24 @@
 pipeline {
     agent any
-    environment {
-        DOCKER_IMAGE = 'my-go-app'
-    }
     stages {
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/ArThaq/project.git'
-            }
-        }
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
                 script {
-                    docker.build(DOCKER_IMAGE)
+                    sh 'docker build -t my-go-app .'
                 }
             }
         }
-        stage('Run Docker Container') {
+        stage('Run Tests') {
             steps {
                 script {
-                    docker.run(DOCKER_IMAGE, '-p 8080:8080')
+                    sh 'docker run my-go-app'
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    sh 'docker run -d -p 8080:8080 my-go-app'
                 }
             }
         }
