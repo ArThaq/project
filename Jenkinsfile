@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        PATH = "/bin:/usr/bin:/usr/local/bin:$PATH"
+    }
     stages {
         stage('Test Docker') {
             steps {
