@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     echo "Building Docker image..."
-                    def myApp = docker.build("my-go-app", "-f webapi/Dockerfile .")
+                    def myApp = docker.build("my-go-app", "-f Dockerfile .")
                 }
             }
         }
