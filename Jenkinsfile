@@ -7,26 +7,25 @@ pipeline {
         stage('Test Docker') {
             steps {
                 script {
-                    docker.image("my-go-app").inside {
+                    echo "Testing Docker installation..."
                     sh 'docker --version'
-                    }
                 }
             }
         }
         stage('Build') {
             steps {
                 script {
-                    docker.image("my-go-app").inside {
-                    sh 'docker build -t my-go-app -f webapi/Dockerfile .'
-                    }
+                    echo "Building Docker image..."
+                    def myApp = docker.build("my-go-app", "-f webapi/Dockerfile .")
                 }
             }
         }
         stage('Run Tests') {
             steps {
                 script {
+                    echo "Running tests inside the container..."
                     docker.image("my-go-app").inside {
-                        sh 'docker run my-go-app'
+                        sh "go test ./..."
                     }
                 }
             }
@@ -34,6 +33,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
+                    echo "Deploying application..."
                     docker.image("my-go-app").run("-d -p 8080:8080")
                 }
             }
