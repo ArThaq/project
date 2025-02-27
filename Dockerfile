@@ -4,6 +4,9 @@ FROM golang:1.20-alpine
 # Install bash or sh
 RUN apk add --no-cache bash && ln -s /bin/bash /usr/bin/sh
 
+# Add permission to /root directory for Go build cache
+RUN mkdir -p /root/.cache && chmod -R 777 /root/.cache
+
 # Set the working directory inside the container
 WORKDIR /app
 
