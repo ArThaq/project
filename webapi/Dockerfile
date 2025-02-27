@@ -2,13 +2,13 @@
 FROM golang:1.20-alpine
 
 # Set the working directory inside the container
-WORKDIR /app
+WORKDIR /webapi
 
 # Copy all the Go source code into the container
 COPY . .
 
 # Copy the Go module files to the container (so dependencies can be fetched first)
-COPY go.mod go.sum.sum ./
+COPY go.mod go.sum ./
 
 # Download Go dependencies
 RUN go mod tidy
