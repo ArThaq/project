@@ -4,12 +4,6 @@ FROM golang:1.20-alpine
 # Install bash or sh
 RUN apk add --no-cache bash && ln -s /bin/bash /usr/bin/sh
 
-# Add a user
-RUN adduser -D myuser
-
-# Set the user to the created user
-USER myuser
-
 # Set the working directory inside the container
 WORKDIR /app
 

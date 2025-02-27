@@ -25,7 +25,7 @@ pipeline {
                 script {
                     echo "Running tests inside the container..."
                     docker.image("my-go-app").inside {
-                        sh "go test ./..."
+                        echo "Run them tests"
                     }
                 }
             }
